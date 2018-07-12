@@ -1101,42 +1101,72 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="277" parent="3" name="Products">
+    <table id="277" parent="3" name="Categories">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="278" parent="277" name="id">
+    <table id="278" parent="3" name="Products">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="279" parent="277" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="277" name="name">
+    <column id="280" parent="277" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="277" name="manufacturer">
+    <column id="281" parent="277" name="descrip">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="277" name="price">
+    <key id="282" parent="277" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="283" parent="278" name="id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="278" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="285" parent="278" name="manufacturer">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="278" name="price">
       <Position>4</Position>
       <DataType>decimal(7,2)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="277" name="vat">
+    <column id="287" parent="278" name="vat">
       <Position>5</Position>
       <DataType>tinyint(4)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="277" name="stock">
+    <column id="288" parent="278" name="stock">
       <Position>6</Position>
       <DataType>smallint(5) unsigned|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="284" parent="277" name="PRIMARY">
+    <column id="289" parent="278" name="category_id">
+      <Position>7</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="290" parent="278" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

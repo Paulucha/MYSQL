@@ -110,6 +110,74 @@ SELECT manufacturer, sum(Products.stock) FROM Products GROUP BY manufacturer HAV
 -- 	- zmień stan magazynowy dwóch innych produktów, bo właśnie sprzedało się 5 sztuk każdego z nich
 -- 	- podnieś wszystkie ceny w sklepie o 10%
 
-UPDATE Products
+SELECT * FROM Products;
+UPDATE Products SET stock =1000 where id in (1,2);
+UPDATE Products SET stock = stock-5 WHERE id in (3,4);
+UPDATE Products SET price = price*1.1;
+
 
 -- ZADANIE 9 - usuń produkty, których stan magazynowy wynosi 0
+
+DELETE FROM Products WHERE stock=0;
+
+-- ZADANIE 10
+--   - stwórz tabelę Categories z kolumnami (id, name, desc)
+--   - dodaj kategorie: monitory, dyski twarde, pamięci ram, klawiatury,
+--      myszy bezprzewodowe, obudowy, drukarki
+--   - dodaj kolumnę w Products, która będzie łączyć produkt z
+--      odpowiednią kategorią za pomocą klucza obcego (FOREIGN KEY)
+
+CREATE TABLE Categories (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  descrip VARCHAR(255)
+
+);
+
+INSERT INTO Categories VALUES (1, "monitory",null ),
+  (NULL , "dyski twarde",null ), (null, "pamięci ram",null ), (null, "klawiatury bezprzewodowe",null ),
+  (NULL , "obudowy", null), (NULL , "drukarki",null );
+INSERT INTO Categories VALUES (NULL , "myszy",null );
+
+DESCRIBE Categories;
+SELECT * FROM Categories;
+
+ALTER TABLE Products ADD COLUMN category_id INT UNSIGNED;
+
+ALTER  TABLE Products ADD FOREIGN KEY (id) REFERENCES Categories(id);
+
+-- ZADANIE 11
+--   - wyświetl listę produktów w formie trzech kolumn
+--     (nazwa produktu, kategoria, cena netto) posortowaną po nazwie kategorii
+--   - ogranicz tę listę tylko do klawiatur i myszy
+--   - wyświetl stan magazygnowy dla każdej kategorii - lista w formie
+--     (nazwa kategorii, liczba sztuk)
+
+SELECT Products.name, Categories.name, price  From Products JOIN Categories on Products.category_id=Categories.id;
+
+
+SELECT Products.name, Categories.name, price  From Products JOIN Categories on Products.category_id=Categories.id WHERE Categories.name = "myszy" or Categories.name = "klawiatury bezprzewodowe";
+
+SELECT Products.stock, Categories.name FROM Products, Categories WHERE Products.category_id=Categories.id;
+
+
+-- ZADANIE 12
+--   - wyświetl listę wszystkich kategorii i odpowiadającą im liczbę produktów w sklepie
+--   - wyświetl listę wszystkich produktów i odpowiadające im kategorie, jeśli są przypisane
+--   - średnia cena produktu w każdej kategori (lista: ŚREDNIA CENA + NAZWA KATEGORII)
+
+SELECT c.name, count(p.stock) FROM Categories c LEFT JOIN Products p on c.id=p.category_id GROUP BY c.name;
+
+
+-- ZADANIE 13
+--   - wyświetl produkty, które nie mają przypisanej żadnej kategorii
+--   - wyświetl kategorie, do których nie jest przypisany żaden produkt
+
+
+
+-- ZADANIE 14
+--   - wyświetl nazwy produktów wraz z ich cenami brutto (netto + vat)
+--   - wyświetl nazwy produktów oraz przy każdej z nich wartość netto
+--     towaru w magazynie (liczba sztuk * cena netto)
+
+
