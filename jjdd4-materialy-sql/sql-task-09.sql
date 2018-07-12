@@ -1,0 +1,1 @@
+-- ZADANIE 9 - usuń produkty, których stan magazynowy wynosi 0
